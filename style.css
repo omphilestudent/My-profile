@@ -169,3 +169,99 @@ h1 {
   padding: 2.5rem;
   margin: 1rem;
 }
+/* Skills Section Styling */
+.skills-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.skills-section h2 {
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.skill-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  filter: grayscale(30%);
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.skill p {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Image Hover Effects */
+.skill:hover {
+  transform: translateY(-5px);
+}
+
+.skill:hover .skill-logo {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific logo styling */
+.skill:nth-child(1) .skill-logo {
+  background-color: rgba(228, 77, 38, 0.1); /* HTML orange */
+}
+
+.skill:nth-child(2) .skill-logo {
+  background-color: rgba(21, 114, 182, 0.1); /* CSS blue */
+}
+
+.skill:nth-child(3) .skill-logo {
+  background-color: rgba(247, 223, 30, 0.1); /* JS yellow */
+}
+
+.skill:nth-child(4) .skill-logo {
+  background-color: rgba(53, 114, 165, 0.1); /* Python blue */
+}
+
+/* Glass container adjustments */
+.glass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .glass {
+      width: 90%;
+      height: auto;
+      padding: 1.5rem;
+  }
+}
