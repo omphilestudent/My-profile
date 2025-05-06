@@ -1,151 +1,171 @@
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --text-primary: #222222;
-    --text-secondary: #555555;
-    --accent-color: #d7cffe;
-    --border-color: #dddddd;
-    --hover-color: #555555;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #222222;
+  --text-secondary: #fff2f2;
+  --accent-color: #d7cffe;
+  --border-color: #dddddd;
+  --hover-color: #fff8f8;
 }
 
 /* Dark theme variables */
 [data-theme="dark"] {
-    --bg-primary: #24252a;
-    --bg-secondary: #1e1e1e;
-    --text-primary: #f0f0f0;
-    --text-secondary: #aaaaaa;
-    --accent-color: #24252a;
-    --border-color: #333333;
-    --hover-color: #ffffff;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #f0f0f0;
+  --text-secondary: #ffffff;
+  --accent-color: #6a6d78;
+  --border-color: #444444;
+  --hover-color: #333333;
 }
 
-/* Apply variables to elements */
-
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  min-height: 100vh;
+}
 
 header, footer {
-    background-color: var(--bg-secondary);
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .primary-btn {
-    background-color: var(--border-color);
-    color: var(--border-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
+  background-color: var(--accent-color);
+  color: var(--text-primary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.primary-btn:hover {
+  background-color: var(--hover-color);
 }
 
 #theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text-primary);
 }
 
-
-/* Basic Navbar Styles */
+/* Navbar Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--border-color);
-    color: var(--bg-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: inherit;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link.active {
+  background-color: var(--accent-color);
+  color: var(--text-secondary);
+}
+
+.nav-link:hover {
+  background-color: var(--hover-color);
+}
+
+/* Mobile Toggle Button */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
   }
-  
-  .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
+
   .navbar-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-  }
-  
-  .nav-link {
-    color: var(--accent-color);
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .nav-link.active {
-    background-color: var(--text-primary); /* Highlight active link */
-  }
-  
-  .nav-link:hover {
-    background-color: var(--hover-color);
-  }
-  
-  /* Mobile Toggle Button (Hidden by Default) */
-  .navbar-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .navbar-links {
-      display: none; /* Hide links on mobile */
+      display: none;
       flex-direction: column;
       width: 100%;
-    }
-  
-    .navbar-links.active {
-      display: flex; /* Show when toggle is clicked */
-    }
-  
-    .navbar-toggle {
+      margin-top: 1rem;
+  }
+
+  .navbar-links.active {
+      display: flex;
+  }
+
+  .navbar-toggle {
       display: block;
-    }
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
   }
+}
 
-  h1{
-    background-image: url(omphile.image.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    block-size: auto;
-    color: var(--accent-color);
-  }
+h1 {
+  background-image: url(omphile.image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--text-secondary);
+  padding: 2rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  margin: 0;
+}
 
-  .name{
-    color:var(--accent-color);
-    font-family: 
-    font-style: oblique 40deg;
-    font-style: italic;
-  }
+.name {
+  color: var(--accent-color);
+  font-style: italic;
+  font-weight: 600;
+}
 
-  .image{
-    background-repeat: no-repeat;
-    height: 100%;
-    max-width: 100%;
-  }
+.image-container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
 
-  .glass{
-    border: 1px soild rgba(196, 192, 192, 0.155);
-    border-radius: 16px;
-    background-color: var(--hover-color);
-    box-shadow: 0 4px 30px rgba(255,255,255,0);
-    backdrop-filter: blur(2.8px);
-   
-    width: 20rem;
-    height: 20rem;
-    padding: 2.5rem;
-  }
-
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    
+.glass {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  width: 20rem;
+  height: 20rem;
+  padding: 2.5rem;
+  margin: 1rem;
 }
