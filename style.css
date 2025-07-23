@@ -320,7 +320,7 @@ cite {
   text-align: center;
 }
 
-/* Footer */
+
 footer {
   text-align: center;
   padding: 2rem 0;
@@ -329,7 +329,7 @@ footer {
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Theme Toggle */
+
 .navbar-controls {
   display: flex;
   align-items: center;
@@ -351,7 +351,6 @@ footer {
   background: var(--hover-color);
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -363,7 +362,7 @@ footer {
   }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -423,4 +422,63 @@ footer {
   .glass p {
     font-size: 1rem;
   }
+}
+
+/* Games Section */
+.games-section {
+  background-color: var(--bg-secondary);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.game-card {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-card h3 {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.game-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.game-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.game-link:hover {
+  background-color: var(--accent-light);
+  color: #fff;
 }

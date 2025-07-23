@@ -16,8 +16,8 @@
             <ul class="navbar-links">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About Me</a></li>
+                <li><a href="#games" class="nav-link">Games</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="game.html" class="nav-link">My Game</a></li>
             </ul>
             <div class="navbar-controls">
                 <button class="navbar-toggle" aria-label="Menu">☰</button>
@@ -86,6 +86,22 @@
             </article>
         </section>
 
+        <section class="games-section" id="games">
+            <h2>Games</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>Rock, Paper, Scissors</h3>
+                    <p>Challenge yourself in the classic game of Rock, Paper, Scissors!</p>
+                    <a href="game.html" class="game-link">Play Now</a>
+                </div>
+                <div class="game-card">
+                    <h3>Role Play Game</h3>
+                    <p>Embark on an interactive storytelling experience through code.</p>
+                    <a href="Role-play.html" class="game-link">Play Now</a>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="contact-section">
             <h2>Get In Touch</h2>
             <p>Feel free to reach out for collaborations or opportunities.</p>
@@ -100,13 +116,25 @@
 
     <script src="script.js"></script>
     <script>
-        // Simple current year script
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Mobile menu toggle functionality
-        document.querySelector('.navbar-toggle').addEventListener('click', function() {
+
+            // Set current year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Toggle mobile navbar
+            document.querySelector('.navbar-toggle').addEventListener('click', function () {
             document.querySelector('.navbar-links').classList.toggle('active');
         });
+
+            // Activate clicked nav-link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+
     </script>
 </body>
 </html>
