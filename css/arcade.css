@@ -1,0 +1,203 @@
+/* Shared look and motion for the game pages */
+
+:root {
+    --ink: #1d1147;
+    --paper: #fffaf2;
+    --sun: #ffd23f;
+    --orange: #ff7a1a;
+    --pink: #ff3d7f;
+    --mint: #2ee6a6;
+    --violet: #6c5ce7;
+    --sky: #4cc9f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 0 16px 40px;
+    overflow-x: hidden;
+    font-family: 'Fredoka', system-ui, sans-serif;
+    color: var(--ink);
+    background: linear-gradient(-45deg, var(--orange), var(--pink), var(--violet), var(--sky));
+    background-size: 400% 400%;
+    animation: bgShift 16s ease infinite;
+}
+
+/* Floating blobs behind everything */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body::before {
+    width: 340px;
+    height: 340px;
+    top: -120px;
+    left: -100px;
+    background: rgba(255, 255, 255, 0.18);
+    animation: floatA 10s ease-in-out infinite;
+}
+
+body::after {
+    width: 260px;
+    height: 260px;
+    right: -70px;
+    bottom: -90px;
+    background: rgba(255, 210, 63, 0.25);
+    animation: floatB 12s ease-in-out infinite;
+}
+
+/* Top bar with the way back to the portfolio */
+.game-topbar {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 18px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 6px 0 rgba(29, 17, 71, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 rgba(29, 17, 71, 0.25);
+}
+
+.back-link:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 rgba(29, 17, 71, 0.25);
+}
+
+.back-link:hover .arrow {
+    animation: nudge 0.6s ease-in-out infinite alternate;
+}
+
+.game-title {
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* The white card every game sits on */
+.game-card {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px 22px;
+    border-radius: 28px;
+    background: var(--paper);
+    text-align: center;
+    box-shadow: 0 20px 0 rgba(29, 17, 71, 0.18), 0 30px 60px rgba(29, 17, 71, 0.25);
+    animation: cardIn 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+:focus-visible {
+    outline: 3px solid var(--sun);
+    outline-offset: 3px;
+}
+
+/* Confetti layer, created by js/fx.js */
+.confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -30px;
+    border-radius: 3px;
+    animation: confettiFall linear forwards;
+}
+
+/* Keyframes shared by the games */
+@keyframes bgShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatA {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(60px, 40px); }
+}
+
+@keyframes floatB {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-50px, -30px); }
+}
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes confettiFall {
+    to { transform: translate3d(var(--drift, 0), 110vh, 0) rotate(720deg); }
+}
+
+@keyframes pop {
+    0%   { transform: scale(0.7); opacity: 0; }
+    60%  { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-8px); }
+    40%      { transform: translateX(8px); }
+    60%      { transform: translateX(-6px); }
+    80%      { transform: translateX(6px); }
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25%      { transform: rotate(-12deg) scale(1.1); }
+    75%      { transform: rotate(12deg) scale(1.1); }
+}
+
+@keyframes nudge {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-4px); }
+}
+
+/* Respect visitors who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

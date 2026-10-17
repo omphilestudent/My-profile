@@ -18,8 +18,7 @@
 }
 
 /* Dark theme */
-[data-theme="dark"],
-.dark-mode {
+[data-theme="dark"] {
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
   --text-primary: #f5f6fa;
@@ -109,6 +108,7 @@ a {
 
 section {
   padding: 4rem 1.5rem;
+  scroll-margin-top: 90px;
 }
 
 /* Header & Navigation */
@@ -419,6 +419,11 @@ header {
 
 .skill:hover .skill-logo {
   transform: scale(1.08);
+}
+
+/* Near-black logos (GitHub, OpenAI) are inverted so they show on dark backgrounds */
+[data-theme="dark"] .skill-logo--mono {
+  filter: invert(1);
 }
 
 .skill-icon {

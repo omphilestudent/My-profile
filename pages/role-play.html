@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragon Repeller | Omphile Mohlala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/arcade.css">
+  <link rel="stylesheet" href="../css/role-play.css">
+</head>
+<body>
+
+<header class="game-topbar">
+  <a href="../index.html#games" class="back-link">
+    <span class="arrow" aria-hidden="true">←</span> Back to portfolio
+  </a>
+  <span class="game-title">Dragon Repeller</span>
+</header>
+
+<main class="rpg-wrap">
+
+  <div class="rpg" id="rpg">
+    <canvas id="world" width="512" height="384" aria-label="Dragonvale world"></canvas>
+
+    <div class="hud">
+      <span class="hud-location" id="hud-location">Dragonvale Town</span>
+      <span class="hud-stats" id="hud-stats"></span>
+    </div>
+
+    <div class="battle" id="battle" hidden>
+      <div class="battle-stage">
+        <div class="foe">
+          <div class="panel">
+            <span class="panel-name"><span id="foe-name"></span> <span class="lv" id="foe-level"></span></span>
+            <div class="hp"><div class="hp-fill" id="foe-hp"></div></div>
+            <span class="numbers" id="foe-numbers"></span>
+          </div>
+          <div class="sprite foe-sprite" id="foe-sprite"></div>
+        </div>
+        <div class="you">
+          <div class="sprite you-sprite" id="you-sprite">🤺</div>
+          <div class="panel">
+            <span class="panel-name">Hero <span class="lv" id="you-level"></span></span>
+            <div class="hp"><div class="hp-fill" id="you-hp"></div></div>
+            <span class="numbers" id="you-numbers"></span>
+          </div>
+        </div>
+        <div class="companions" id="companion-strip"></div>
+      </div>
+    </div>
+
+    <div class="dialog" id="dialog" hidden>
+      <div class="dialog-speaker" id="dialog-speaker" hidden></div>
+      <p id="dialog-text"></p>
+      <span class="dialog-next" aria-hidden="true">▶</span>
+    </div>
+
+    <div class="choice" id="choice" hidden>
+      <h3 id="choice-title"></h3>
+      <div class="choice-list" id="choice-list"></div>
+    </div>
+
+    <div class="fade" id="fade"></div>
+    <div class="flash" id="flash"></div>
+  </div>
+
+  <div class="touch" aria-label="On-screen controls">
+    <div class="dpad">
+      <button type="button" data-key="ArrowUp" aria-label="Up">▲</button>
+      <button type="button" data-key="ArrowLeft" aria-label="Left">◀</button>
+      <button type="button" data-key="ArrowRight" aria-label="Right">▶</button>
+      <button type="button" data-key="ArrowDown" aria-label="Down">▼</button>
+    </div>
+    <div class="ab">
+      <button type="button" class="b" data-key="x" aria-label="Menu">MENU</button>
+      <button type="button" class="a" data-key=" " aria-label="Talk or confirm">A</button>
+    </div>
+  </div>
+
+  <p class="controls-help">Arrow keys or WASD to walk · Space or Z to talk and confirm · X or Esc for the menu</p>
+
+</main>
+
+<script src="../js/fx.js"></script>
+<script src="../js/rpg/data.js"></script>
+<script src="../js/rpg/sprites.js"></script>
+<script src="../js/rpg/world.js"></script>
+<script src="../js/rpg/ui.js"></script>
+<script src="../js/rpg/battle.js"></script>
+<script src="../js/role-play.js"></script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+/* Dragon Repeller: the 2D overworld, battle screen and dialog boxes. Shared styles are in arcade.css */
+
+[hidden] {
+    display: none !important;
+}
+
+.rpg-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+/* The game screen keeps a 4:3 frame, like a handheld */
+.rpg {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 6px solid var(--ink);
+    background: #0b0b1a;
+    box-shadow: 0 16px 0 rgba(29, 17, 71, 0.25), 0 30px 60px rgba(29, 17, 71, 0.35);
+    animation: cardIn 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+#world {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+/* Location and stats across the top */
+.hud {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.hud-location,
+.hud-stats {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(29, 17, 71, 0.85);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.hud-location {
+    color: var(--sun);
+}
+
+/* Dialog box across the bottom */
+.dialog {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    min-height: 92px;
+    padding: 14px 18px 16px;
+    border: 4px solid var(--ink);
+    border-radius: 14px;
+    background: #fffaf0;
+    color: var(--ink);
+    font-size: 1.02rem;
+    line-height: 1.45;
+    box-shadow: 0 6px 0 rgba(29, 17, 71, 0.3);
+    z-index: 4;
+}
+
+.dialog p {
+    margin: 0;
+    color: var(--ink);
+}
+
+.dialog-speaker {
+    position: absolute;
+    top: -14px;
+    left: 12px;
+    padding: 2px 12px;
+    border-radius: 8px;
+    background: var(--violet);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.dialog-next {
+    position: absolute;
+    right: 12px;
+    bottom: 6px;
+    color: var(--pink);
+    animation: bob 0.8s ease-in-out infinite;
+}
+
+/* Choice menus sit above the dialog box */
+.choice {
+    position: absolute;
+    right: 14px;
+    bottom: 124px;
+    width: min(320px, 62%);
+    padding: 10px;
+    border: 4px solid var(--ink);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 6px 0 rgba(29, 17, 71, 0.3);
+    z-index: 5;
+}
+
+.choice h3 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    color: var(--violet);
+}
+
+.choice-list {
+    display: grid;
+    gap: 6px;
+}
+
+.choice-item {
+    padding: 8px 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: #f3efff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.1s ease;
+}
+
+.choice-item.selected {
+    border-color: var(--pink);
+    background: #ffe3ef;
+    transform: translateX(4px);
+}
+
+.choice-item:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Battle screen covers the whole game screen */
+.battle {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(180deg, #2d1b69 0%, #0b0b1a 75%);
+}
+
+.battle-stage {
+    position: relative;
+    height: 100%;
+}
+
+.foe {
+    position: absolute;
+    top: 14%;
+    right: 6%;
+    width: 46%;
+    text-align: right;
+}
+
+.you {
+    position: absolute;
+    bottom: 36%;
+    left: 6%;
+    width: 46%;
+}
+
+.panel {
+    display: inline-block;
+    min-width: 170px;
+    padding: 8px 12px;
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    background: #fffaf0;
+    color: var(--ink);
+    text-align: left;
+    box-shadow: 0 4px 0 rgba(29, 17, 71, 0.4);
+}
+
+.panel-name {
+    display: block;
+    font-weight: 600;
+}
+
+.lv {
+    font-size: 0.85rem;
+    color: var(--violet);
+}
+
+.hp {
+    height: 10px;
+    margin: 6px 0 2px;
+    border-radius: 999px;
+    background: #d1d5db;
+    overflow: hidden;
+}
+
+.hp-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #22c55e, #84cc16);
+    transition: width 0.5s ease;
+}
+
+.numbers {
+    font-size: 0.8rem;
+    color: #374151;
+}
+
+.sprite {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.3));
+}
+
+.foe-sprite {
+    margin-top: 10px;
+    animation: bob 2.4s ease-in-out infinite;
+}
+
+.you-sprite {
+    margin-bottom: 6px;
+}
+
+.sprite.enter {
+    animation: spriteIn 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+}
+
+.sprite.hit {
+    animation: spriteHit 0.4s ease;
+}
+
+.foe-sprite.faint {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.companions {
+    position: absolute;
+    right: 14px;
+    top: 52%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+}
+
+.mini {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.mini.fainted {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+/* Transitions */
+.fade {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+    z-index: 8;
+}
+
+.fade.on {
+    opacity: 1;
+}
+
+.flash {
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9;
+}
+
+.flash.flash-on {
+    animation: flashOut 0.45s ease-out;
+}
+
+@keyframes flashOut {
+    0%   { opacity: 0.9; }
+    100% { opacity: 0; }
+}
+
+@keyframes spriteIn {
+    0%   { transform: scale(0.2) rotate(-90deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes spriteHit {
+    0%, 100% { transform: translateX(0); filter: none; }
+    25%      { transform: translateX(-12px); filter: brightness(2.2) saturate(0); }
+    50%      { transform: translateX(12px); filter: brightness(2.2) saturate(0); }
+    75%      { transform: translateX(-6px); filter: none; }
+}
+
+/* Touch controls below the screen */
+.touch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 640px;
+    margin: 18px auto 0;
+    padding: 0 6px;
+    user-select: none;
+    touch-action: none;
+}
+
+.dpad {
+    display: grid;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-rows: repeat(3, 56px);
+    gap: 4px;
+}
+
+.dpad button:nth-child(1) { grid-column: 2; grid-row: 1; }
+.dpad button:nth-child(2) { grid-column: 1; grid-row: 2; }
+.dpad button:nth-child(3) { grid-column: 3; grid-row: 2; }
+.dpad button:nth-child(4) { grid-column: 2; grid-row: 3; }
+
+.ab {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.touch button {
+    width: 56px;
+    height: 56px;
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    background: #fff;
+    color: var(--ink);
+    font: 700 0.9rem 'Fredoka', system-ui, sans-serif;
+    box-shadow: 0 5px 0 rgba(29, 17, 71, 0.35);
+    cursor: pointer;
+}
+
+.touch button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 rgba(29, 17, 71, 0.35);
+}
+
+.touch .a {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), var(--pink));
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.touch .b {
+    width: 84px;
+    height: 44px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--mint), var(--sky));
+}
+
+.controls-help {
+    margin: 14px 0 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+    .dialog {
+        font-size: 0.9rem;
+        min-height: 84px;
+    }
+
+    .choice {
+        width: 70%;
+        bottom: 118px;
+    }
+
+    .panel {
+        min-width: 130px;
+    }
+
+    .sprite {
+        font-size: 3.4rem;
+    }
+}
