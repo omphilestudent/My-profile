@@ -24,12 +24,12 @@
     <link
             rel="icon"
             type="image/x-icon"
-            href="omphile.JPG"
+            href="assets/images/omphile.JPG"
     >
 
     <link
             rel="stylesheet"
-            href="style.css"
+            href="css/style.css"
     >
 
     <title>
@@ -310,7 +310,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/salesforce/00A1E0"
+                        src="assets/icons/salesforce.svg"
                         alt="Salesforce logo"
                         class="skill-logo"
                 >
@@ -332,7 +332,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/salesforce/00A1E0"
+                        src="assets/icons/salesforce.svg"
                         alt="Salesforce logo representing Apex"
                         class="skill-logo"
                 >
@@ -354,7 +354,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/salesforce/00A1E0"
+                        src="assets/icons/salesforce.svg"
                         alt="Salesforce logo representing SOQL"
                         class="skill-logo"
                 >
@@ -376,7 +376,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/salesforce/00A1E0"
+                        src="assets/icons/salesforce.svg"
                         alt="Salesforce logo representing Lightning Web Components"
                         class="skill-logo"
                 >
@@ -398,7 +398,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/javascript/F7DF1E"
+                        src="assets/images/skills/javascript.png"
                         alt="JavaScript logo"
                         class="skill-logo"
                 >
@@ -420,7 +420,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/html5/E34F26"
+                        src="assets/images/skills/html.png"
                         alt="HTML5 logo"
                         class="skill-logo"
                 >
@@ -442,7 +442,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/css/1572B6"
+                        src="assets/images/skills/css.png"
                         alt="CSS3 logo"
                         class="skill-logo"
                 >
@@ -464,7 +464,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/react/61DAFB"
+                        src="assets/images/skills/react.png"
                         alt="React logo"
                         class="skill-logo"
                 >
@@ -486,7 +486,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/mysql/4479A1"
+                        src="assets/icons/mysql.svg"
                         alt="SQL database logo"
                         class="skill-logo"
                 >
@@ -508,7 +508,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/postman/FF6C37"
+                        src="assets/icons/postman.svg"
                         alt="Postman REST API logo"
                         class="skill-logo"
                 >
@@ -530,9 +530,9 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/github/181717"
+                        src="assets/icons/github.svg"
                         alt="GitHub logo"
-                        class="skill-logo"
+                        class="skill-logo skill-logo--mono"
                 >
 
                 <h3>
@@ -552,9 +552,9 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/openai/000000"
+                        src="assets/icons/openai.svg"
                         alt="OpenAI logo"
-                        class="skill-logo"
+                        class="skill-logo skill-logo--mono"
                 >
 
                 <h3>
@@ -574,7 +574,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/junit/25A162"
+                        src="assets/icons/junit.svg"
                         alt="JUnit testing logo"
                         class="skill-logo"
                 >
@@ -596,7 +596,7 @@
             <div class="skill">
 
                 <img
-                        src="https://cdn.simpleicons.org/python/3776AB"
+                        src="assets/images/skills/python.png"
                         alt="Python logo"
                         class="skill-logo"
                 >
@@ -886,7 +886,7 @@
 
 
                 <a
-                        href="game.html"
+                        href="pages/game.html"
                         class="game-link"
                 >
                     Play Now →
@@ -912,7 +912,7 @@
 
 
                 <a
-                        href="Role-play.html"
+                        href="pages/role-play.html"
                         class="game-link"
                 >
                     Play Now →
@@ -993,119 +993,7 @@
 
 
 
-<script src="script.js"></script>
-
-
-<script>
-
-
-    // Current year
-
-    document.getElementById('year').textContent =
-        new Date().getFullYear();
-
-
-
-    // Mobile navigation
-
-    const navbarToggle =
-        document.querySelector('.navbar-toggle');
-
-
-    const navbarLinks =
-        document.querySelector('.navbar-links');
-
-
-    navbarToggle.addEventListener(
-        'click',
-        function () {
-
-            navbarLinks.classList.toggle('active');
-
-        }
-    );
-
-
-
-    // Navigation active state
-
-    const navLinks =
-        document.querySelectorAll('.nav-link');
-
-
-    navLinks.forEach(
-        function (link) {
-
-            link.addEventListener(
-                'click',
-                function () {
-
-                    navLinks.forEach(
-                        function (navLink) {
-
-                            navLink.classList.remove(
-                                'active'
-                            );
-
-                        }
-                    );
-
-
-                    this.classList.add(
-                        'active'
-                    );
-
-
-                    navbarLinks.classList.remove(
-                        'active'
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-
-    // Dark mode
-
-    const themeToggle =
-        document.getElementById('theme-toggle');
-
-
-    const toggleIcon =
-        document.querySelector('.toggle-icon');
-
-
-    themeToggle.addEventListener(
-        'click',
-        function () {
-
-            document.body.classList.toggle(
-                'dark-mode'
-            );
-
-
-            if (
-                document.body.classList.contains(
-                    'dark-mode'
-                )
-            ) {
-
-                toggleIcon.textContent = '☀️';
-
-            } else {
-
-                toggleIcon.textContent = '🌙';
-
-            }
-
-        }
-    );
-
-
-</script>
+<script src="js/main.js"></script>
 
 
 </body>

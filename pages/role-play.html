@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragon Repeller | Omphile Mohlala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/arcade.css">
+  <link rel="stylesheet" href="../css/role-play.css">
+</head>
+<body>
+
+<header class="game-topbar">
+  <a href="../index.html#games" class="back-link">
+    <span class="arrow" aria-hidden="true">←</span> Back to portfolio
+  </a>
+  <span class="game-title">Dragon Repeller</span>
+</header>
+
+<main>
+  <div id="game" class="game-card">
+    <div id="stats">
+      <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
+      <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
+      <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
+    </div>
+
+    <div id="controls">
+      <button id="button1">Go to store</button>
+      <button id="button2">Go to cave</button>
+      <button id="button3">Fight dragon</button>
+    </div>
+
+    <div id="monsterStats">
+      <div id="monsterArt" aria-hidden="true"></div>
+      <div>
+        <span class="stat">Monster Name: <strong><span id="monsterName"></span></strong></span>
+        <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
+      </div>
+    </div>
+
+    <div id="text" role="status" aria-live="polite">
+      Welcome to Dragon Repeller. You must defeat the dragon that is preventing people from leaving the town. You are in the town square. Where do you want to go? Use the buttons above.
+    </div>
+  </div>
+</main>
+
+<script src="../js/fx.js"></script>
+<script src="../js/role-play.js"></script>
+</body>
+</html>

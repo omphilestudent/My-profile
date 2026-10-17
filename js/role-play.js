@@ -13,9 +13,12 @@ const text = document.querySelector("#text");
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
+const arena = document.querySelector("#game");
 const monsterStats = document.querySelector("#monsterStats");
+const monsterArt = document.querySelector("#monsterArt");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+const monsterEmojis = ["🟢", "🐺", "🐉"];
 const weapons = [
     { name: 'stick', power: 5 },
     { name: 'dagger', power: 30 },
@@ -94,6 +97,26 @@ const locations = [
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
+
+// Animations: replay the text and stat effects whenever the game changes them
+function watchForChanges(element, callback) {
+    new MutationObserver(callback).observe(element, { childList: true, characterData: true, subtree: true });
+}
+
+watchForChanges(text, () => Fun.replayAnimation(text, "text-in"));
+[xpText, healthText, goldText, monsterHealthText].forEach(stat => {
+    watchForChanges(stat, () => Fun.replayAnimation(stat.closest(".stat"), "pop"));
+});
+
+// Floating text such as damage numbers, removed once it fades out
+function showFloat(parent, message, color) {
+    const float = document.createElement("span");
+    float.className = "float-text";
+    float.textContent = message;
+    float.style.color = color;
+    parent.appendChild(float);
+    float.addEventListener("animationend", () => float.remove());
+}
 
 function update(location) {
     monsterStats.style.display = "none";
@@ -180,6 +203,8 @@ function goFight() {
     update(locations[3]);
     monsterHealth = monsters[fighting].health;
     monsterStats.style.display = "block";
+    monsterArt.textContent = monsterEmojis[fighting];
+    Fun.replayAnimation(monsterArt, "enter");
     monsterName.innerText = monsters[fighting].name;
     monsterHealthText.innerText = monsterHealth;
 }
@@ -187,12 +212,24 @@ function goFight() {
 function attack() {
     text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
-    health -= getMonsterAttackValue(monsters[fighting].level);
+
+    const damageTaken = getMonsterAttackValue(monsters[fighting].level);
+    health -= damageTaken;
+    if (damageTaken > 0) {
+        Fun.replayAnimation(arena, "shake");
+        showFloat(arena, "-" + damageTaken, "#ff3d7f");
+    }
+
     if (isMonsterHit()) {
-        monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+        const damageDealt = weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+        monsterHealth -= damageDealt;
+        Fun.replayAnimation(monsterArt, "hit");
+        showFloat(monsterStats, "-" + damageDealt, "#ffd23f");
     } else {
         text.innerText += " You miss.";
+        showFloat(monsterStats, "MISS", "#ffffff");
     }
+
     healthText.innerText = health;
     monsterHealthText.innerText = monsterHealth;
     if (health <= 0) {
@@ -229,14 +266,17 @@ function defeatMonster() {
     xp += monsters[fighting].level;
     goldText.innerText = gold;
     xpText.innerText = xp;
+    Fun.launchConfetti(25);
     update(locations[4]);
 }
 
 function lose() {
+    arena.classList.add("fallen");
     update(locations[5]);
 }
 
 function winGame() {
+    Fun.launchConfetti(150);
     update(locations[6]);
 }
 
@@ -249,6 +289,7 @@ function restart() {
     goldText.innerText = gold;
     healthText.innerText = health;
     xpText.innerText = xp;
+    arena.classList.remove("fallen");
     goTown();
 }
 
@@ -277,10 +318,12 @@ function pick(guess) {
         text.innerText += "Right! You win 20 gold!";
         gold += 20;
         goldText.innerText = gold;
+        Fun.launchConfetti(40);
     } else {
         text.innerText += "Wrong! You lose 10 health!";
         health -= 10;
         healthText.innerText = health;
+        Fun.replayAnimation(arena, "shake");
         if (health <= 0) {
             lose();
         }

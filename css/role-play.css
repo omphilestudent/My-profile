@@ -1,0 +1,187 @@
+/* Dragon Repeller. Shared styles are in arcade.css */
+
+#game {
+    position: relative;
+    max-width: 560px;
+    padding: 22px;
+}
+
+#game.fallen {
+    animation: fallen 1.2s ease forwards;
+}
+
+@keyframes fallen {
+    to {
+        transform: translateY(12px);
+        filter: grayscale(1) brightness(0.7);
+    }
+}
+
+/* Stats as chips */
+#stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.stat {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    font-weight: 500;
+}
+
+.stat strong {
+    color: var(--sun);
+    font-weight: 700;
+}
+
+/* Buttons */
+#controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+button {
+    padding: 0.85rem 0.5rem;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--orange), var(--pink));
+    box-shadow: 0 6px 0 #b8245a;
+    color: #fff;
+    font: 600 1rem 'Fredoka', system-ui, sans-serif;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+}
+
+button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #b8245a;
+}
+
+#button2 {
+    background: linear-gradient(135deg, var(--mint), var(--sky));
+    box-shadow: 0 6px 0 #1f8f6a;
+}
+
+#button2:active {
+    box-shadow: 0 2px 0 #1f8f6a;
+}
+
+#button3 {
+    background: linear-gradient(135deg, var(--violet), #a55eea);
+    box-shadow: 0 6px 0 #4b3bb0;
+}
+
+#button3:active {
+    box-shadow: 0 2px 0 #4b3bb0;
+}
+
+/* Monster panel */
+#monsterStats {
+    display: none;
+    position: relative;
+    margin-bottom: 14px;
+    padding: 16px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--pink), var(--violet));
+    color: #fff;
+}
+
+#monsterStats .stat {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#monsterStats .stat strong {
+    color: #fff;
+}
+
+#monsterArt {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 4.5rem;
+    line-height: 1;
+    text-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
+    animation: bob 2.4s ease-in-out infinite;
+}
+
+#monsterArt.enter {
+    animation: monsterIn 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.4), bob 2.4s ease-in-out 0.6s infinite;
+}
+
+#monsterArt.hit {
+    animation: monsterHit 0.4s ease;
+}
+
+@keyframes monsterIn {
+    0%   { transform: scale(0) rotate(-180deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes monsterHit {
+    0%, 100% { transform: translateX(0); filter: none; }
+    25%      { transform: translateX(-10px) scale(0.95); filter: brightness(2) saturate(0); }
+    50%      { transform: translateX(10px); filter: brightness(2) saturate(0); }
+    75%      { transform: translateX(-6px); filter: none; }
+}
+
+.float-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    z-index: 2;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    transform: translate(-50%, 0);
+    animation: floatUp 0.9s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0%   { opacity: 1; transform: translate(-50%, 0) scale(0.8); }
+    100% { opacity: 0; transform: translate(-50%, -70px) scale(1.25); }
+}
+
+/* Story text */
+#text {
+    min-height: 90px;
+    padding: 14px 16px;
+    border: 3px solid var(--sun);
+    border-radius: 16px;
+    background: #fff7e6;
+    color: var(--ink);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+#text.text-in {
+    animation: textIn 0.4s ease;
+}
+
+@keyframes textIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 480px) {
+    #controls button {
+        font-size: 0.9rem;
+    }
+
+    #monsterArt {
+        font-size: 3.5rem;
+    }
+}
